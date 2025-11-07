@@ -1,0 +1,70 @@
+<mujoco model="robopianist">
+  <compiler angle="radian" meshdir="assets" autolimits="true"/>
+
+  <option impratio="10" iterations="100" ls_iterations="50" timestep="0.005" solver="Newton">
+    <flag eulerdamp="disable"/>
+  </option>
+
+  <custom>
+    <numeric data="15" name="max_contact_points"/>
+    <numeric data="15" name="max_geom_pairs"/>
+  </custom>
+
+  <statistic extent="0.6" center="0.2 0 0.3"/>
+
+  <visual>
+    <!-- <rgba haze="0.15 0.25 0.35 1"/>
+    <quality shadowsize="8192"/>  -->
+    <global azimuth="180" elevation="-50"/>
+    <scale forcewidth="0.04" contactwidth="0.2" contactheight="0.03"/>
+  </visual>
+
+  <asset>
+    <texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1="0.1 0.1 0.1" rgb2="0.2 0.2 0.2"/>
+    <material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance="0.2"/>
+    <texture name="skybox" type="skybox" builtin="gradient" rgb1="0.2 0.2 0.2" rgb2="0 0 0" width="800" height="800" mark="random" markrgb="1 1 1"/>
+  </asset>
+
+  <worldbody>
+    <light pos="0 0 1"/>
+    <light pos="0.3 0 1" dir="0 0 -1" directional="false"/>
+    <geom type="plane" size="1 1 0.05" material="grid" contype="0" conaffinity="0"/>
+  </worldbody>
+  <include file="left_hand.xml"/>
+  <include file="right_hand.xml"/>
+  <include file="piano.xml"/>
+  <contact>
+    <exclude body1="rh_thdistal" body2="lh_ffdistal"/>
+    <exclude body1="rh_thdistal" body2="lh_mfdistal"/> 
+    <exclude body1="rh_thdistal" body2="lh_rfdistal"/>
+    <exclude body1="rh_thdistal" body2="lh_lfdistal"/>
+    <exclude body1="rh_thmiddle" body2="lh_ffdistal"/>
+    <exclude body1="rh_thmiddle" body2="lh_mfdistal"/>
+    <exclude body1="rh_thmiddle" body2="lh_rfdistal"/>
+    <exclude body1="rh_thmiddle" body2="lh_lfdistal"/> 
+    <exclude body1="rh_ffdistal" body2="lh_thdistal"/>
+    <exclude body1="rh_ffdistal" body2="lh_thmiddle"/>
+    <exclude body1="rh_ffdistal" body2="lh_ffdistal"/>
+    <exclude body1="rh_ffdistal" body2="lh_mfdistal"/>
+    <exclude body1="rh_ffdistal" body2="lh_rfdistal"/>
+    <exclude body1="rh_ffdistal" body2="lh_lfdistal"/>
+    <exclude body1="rh_mfdistal" body2="lh_thdistal"/>
+    <exclude body1="rh_mfdistal" body2="lh_thmiddle"/>
+    <exclude body1="rh_mfdistal" body2="lh_ffdistal"/>
+    <exclude body1="rh_mfdistal" body2="lh_mfdistal"/>
+    <exclude body1="rh_mfdistal" body2="lh_rfdistal"/>
+    <exclude body1="rh_mfdistal" body2="lh_lfdistal"/>
+    <exclude body1="rh_rfdistal" body2="lh_thdistal"/>
+    <exclude body1="rh_rfdistal" body2="lh_thmiddle"/>
+    <exclude body1="rh_rfdistal" body2="lh_ffdistal"/>
+    <exclude body1="rh_rfdistal" body2="lh_mfdistal"/>
+    <exclude body1="rh_rfdistal" body2="lh_rfdistal"/>
+    <exclude body1="rh_rfdistal" body2="lh_lfdistal"/>
+    <exclude body1="rh_lfdistal" body2="lh_thdistal"/>
+    <exclude body1="rh_lfdistal" body2="lh_thmiddle"/>
+    <exclude body1="rh_lfdistal" body2="lh_ffdistal"/>
+    <exclude body1="rh_lfdistal" body2="lh_mfdistal"/>
+    <exclude body1="rh_lfdistal" body2="lh_rfdistal"/>
+    <exclude body1="rh_lfdistal" body2="lh_lfdistal"/>
+  </contact>
+</mujoco>
